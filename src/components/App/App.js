@@ -2,7 +2,6 @@
 import './App.css';
 import Header from "../Header/Header";
 import Products from "../Products/Products";
-import ButtonComp from '../ButtonComp';
 function App() {
   const productList=[
     {
@@ -248,7 +247,6 @@ function App() {
   ];
   return (
     <div>
-      <ButtonComp></ButtonComp>
       <Header/>
       <Products products={productList}/>
     </div>
