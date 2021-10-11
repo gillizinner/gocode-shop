@@ -2,7 +2,7 @@ import {useState} from "react";
 function ButtonComp() {
     const [text, setText]= useState("Click");
   return (
-    <button onClick={()=>{ text==="Click" ? setText("") : setText("Click") }}>{text}</button> 
+    <button onClick={()=>{if(text==="Click") setText(""); else setText("Click") }}>{text}</button> 
   );
 }
 
