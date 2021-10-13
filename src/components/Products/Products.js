@@ -1,10 +1,17 @@
-import './Products.css'
+import "./Products.css";
 import Product from "../Product/Product";
-function Products({products}) {
+function Products({ products }) {
   return (
     <section className="products">
-      {products.map((productItem) => <Product key={productItem.id} image={productItem.image} description={productItem.description} price={productItem.price}></Product>)}
-    </section> 
+      {products.map((productItem) => (
+        <Product
+          key={productItem.id}
+          image={productItem.image}
+          title={productItem.title}
+          price={productItem.price}
+        ></Product>
+      ))}
+    </section>
   );
 }
 

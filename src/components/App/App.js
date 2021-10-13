@@ -3,6 +3,7 @@ import "./App.css";
 import Header from "../Header/Header";
 import Products from "../Products/Products";
 import ButtonComp from "../ButtonComp/ButtonComp";
+import { useState } from "react";
 function App() {
   const productList = [
     {
@@ -272,11 +273,23 @@ function App() {
       },
     },
   ];
+  const categoriesList = productList
+    .map((p) => p.category)
+    .filter((value, index, array) => array.indexOf(value) === index);
+  const [filteredProductList, setFilteredProductList] = useState(productList);
+  const filterProductList = (selectedValue) => {
+    setFilteredProductList(
+      productList.filter((product) => product.category === selectedValue)
+    );
+  };
   return (
     <div>
       <ButtonComp></ButtonComp>
-      <Header />
-      <Products products={productList} />
+      <Header
+        categories={categoriesList}
+        filterByCategory={filterProductList}
+      />
+      <Products products={filteredProductList} />
     </div>
   );
 }

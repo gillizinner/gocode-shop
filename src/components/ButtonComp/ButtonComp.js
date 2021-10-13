@@ -1,11 +1,16 @@
-import {useState} from "react";
+import { useState } from "react";
 function ButtonComp() {
-    const [showText, setShowText]= useState(true);
+  const [showText, setShowText] = useState(true);
   return (
     <>
-    {showText && <h1>Hello</h1>}
-    <button onClick={()=>{setShowText(!showText)}}>Click</button> 
-    
+      {showText && <h1>Hello</h1>}
+      <button
+        onClick={() => {
+          setShowText(!showText);
+        }}
+      >
+        Click
+      </button>
     </>
   );
 }
