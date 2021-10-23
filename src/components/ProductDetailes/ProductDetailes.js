@@ -1,5 +1,5 @@
-import "./Product.css";
-function Product({ id, image, title, price }) {
+import "../Product/Product.css";
+function ProductDetailes({ image, title, price }) {
   return (
     <div className="product-card">
       <div className="product-image">
@@ -13,4 +13,4 @@ function Product({ id, image, title, price }) {
   );
 }
 
-export default Product;
+export default ProductDetailes;

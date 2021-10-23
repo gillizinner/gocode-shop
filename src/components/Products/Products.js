@@ -1,15 +1,16 @@
 import "./Products.css";
-import Product from "../Product/Product";
+import CartProduct from "../CartProduct";
 function Products({ products }) {
   return (
     <section className="products">
       {products.map((productItem) => (
-        <Product
+        <CartProduct
+          id={productItem.id}
           key={productItem.id}
           image={productItem.image}
           title={productItem.title}
           price={productItem.price}
-        ></Product>
+        ></CartProduct>
       ))}
     </section>
   );

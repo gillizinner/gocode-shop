@@ -13,7 +13,7 @@ function Header({ categories, filterByCategory }) {
             }}
           >
             {categories.map((category) => (
-              <option>{category}</option>
+              <option key={category}>{category}</option>
             ))}
           </select>
         </div>
