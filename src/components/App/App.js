@@ -31,7 +31,7 @@ function App() {
   return (
     <div>
       <MyContext.Provider value={[cartList, setCartList]}>
-        <Cart />
+        {/* <Cart /> */}
         <ButtonComp></ButtonComp>
         <TemporaryDrawer />
         <Header
