@@ -6,9 +6,12 @@ import Cart from "../Cart";
 import { useState, useEffect } from "react";
 import MyContext from "../../MyContext";
 import TemporaryDrawer from "../Drawer";
+import RangeSlider from "../../RangeSlider";
 function App() {
   const [productList, setProductList] = useState([]);
   const [filteredProductList, setFilteredProductList] = useState(productList);
+  const [filterByPriceProductList, setfilterByPriceProductList] =
+    useState(filteredProductList);
   const [cartList, setCartList] = useState([]);
   useEffect(() => {
     fetch("https://fakestoreapi.com/products")
@@ -18,15 +21,29 @@ function App() {
       .then((List) => {
         setProductList(List);
         setFilteredProductList(List);
+        setfilterByPriceProductList(List);
       });
   }, []);
   const categoriesList = productList
     .map((p) => p.category)
     .filter((value, index, array) => array.indexOf(value) === index);
-  const filterProductList = (selectedValue) => {
+  const filterProductListByCategory = (selectedValue) => {
     setFilteredProductList(
       productList.filter((product) => product.category === selectedValue)
     );
+    setfilterByPriceProductList(
+      //why doesnt work setfilterByPriceProductList(FilteredProductList)
+      productList.filter((product) => product.category === selectedValue)
+    );
+  };
+  const filterProductListByPrice = ([minPrice, maxPrice]) => {
+    setfilterByPriceProductList(
+      filteredProductList.filter(
+        (product) => product.price < maxPrice && product.price > minPrice
+      )
+    );
+    // console.log([minPrice, maxPrice]);
+    // console.log(filterByPriceProductList);
   };
   return (
     <div>
@@ -34,11 +51,15 @@ function App() {
         {/* <Cart /> */}
         <ButtonComp></ButtonComp>
         <TemporaryDrawer />
+        <RangeSlider
+          filterByPrice={filterProductListByPrice}
+          products={productList}
+        />
         <Header
           categories={categoriesList}
-          filterByCategory={filterProductList}
+          filterByCategory={filterProductListByCategory}
         />
-        <Products products={filteredProductList} />
+        <Products products={filterByPriceProductList} />
       </MyContext.Provider>
     </div>
   );

@@ -43,21 +43,23 @@ function CartProduct({ id, image, title, price }) {
         </button>
         <button
           onClick={() => {
-            if (cartList.filter((item) => item.id === id)[0].amount === 1) {
-              //if only one item exists- remove item from cart list
-              setCartList(cartList.filter((item) => item.id !== id));
-            } else if (
-              cartList.filter((item) => item.id === id)[0].amount > 1
-            ) {
-              //if more than one item exists- decrease item's quantity on cart list
-              setCartList(
-                cartList.map((product) => {
-                  if (product.id === id) {
-                    product.amount--;
-                  }
-                  return product;
-                })
-              );
+            if (cartList.length > 0) {
+              if (cartList?.filter((item) => item.id === id)[0].amount === 1) {
+                //if only one item exists- remove item from cart list
+                setCartList(cartList.filter((item) => item.id !== id));
+              } else if (
+                cartList?.filter((item) => item.id === id)[0].amount > 1
+              ) {
+                //if more than one item exists- decrease item's quantity on cart list
+                setCartList(
+                  cartList.map((product) => {
+                    if (product.id === id) {
+                      product.amount--;
+                    }
+                    return product;
+                  })
+                );
+              }
             }
           }}
         >
